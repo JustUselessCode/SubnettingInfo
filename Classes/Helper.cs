@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace IpAddressAnalyzer.Classes
 {
@@ -27,12 +22,14 @@ namespace IpAddressAnalyzer.Classes
 
             for (int i = 0; i < 8; i++)
             {
-                if (!IsBitSet(b, i))
+                bool BitSet = IsBitSet(b, i);
+
+                if (!BitSet)
                 {
                     binString.Append(0);
                 }
 
-                else if (IsBitSet(b, i))
+                else if (BitSet)
                 {
                     binString.Append(1);
                 }
@@ -43,9 +40,7 @@ namespace IpAddressAnalyzer.Classes
 
         public static string ConvertBinToDez(byte b)
         {
-            int i = b;
-
-            return $"{i}";
+            return $"{b.ToString()}";
         }
 
         public static bool IsBitSet(byte b, int pos)
@@ -55,6 +50,11 @@ namespace IpAddressAnalyzer.Classes
 
         public static byte[] InvertSubnetMask(byte[] subnetMaskParts) 
         {
+
+            if (subnetMaskParts.Length != 4)
+            {
+                throw new ArgumentException("Subnet Mask has invalid form!");
+            }
             byte[] invertedSubnetBytes = new byte[4];
 
             for (int i = 0; i < subnetMaskParts.Length; i++)
