@@ -65,7 +65,7 @@ namespace IpAddressAnalyzer.Classes
         {
             if (_IpParts.Length != _SubnetMaskParts.Length && _IpParts.Length == 4)
             {
-                throw new ArgumentException("Die beiden Addressen müssen gleich lang sein!");
+                throw new ArgumentException("The Addresses must be the same Size!");
             }
 
             StringBuilder BroadcastAddress = new();
