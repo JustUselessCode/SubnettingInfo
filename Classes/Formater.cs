@@ -8,6 +8,11 @@ namespace IpAddressAnalyzer.Classes
     {
         public static byte[][] SplitAndConvert(string IpAddr, string SubMask)
         {
+            if (IpAddr.Length != 15 || SubMask.Length != 15)
+            {
+                throw new ArgumentException("Invalid Length of IPv4 Address and/ or Subnet Mask!");
+            }
+
             string[] IpWorker = IpAddr.Split('.');
             string[] SubnetWorker = SubMask.Split('.');
 
