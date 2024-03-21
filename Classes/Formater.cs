@@ -35,7 +35,7 @@ namespace IpAddressAnalyzer.Classes
 
         public static string GetNetworkAddress(byte[] _IpParts, byte[] _SubnetmaskParts)
         {
-            if (_IpParts.Length != _SubnetmaskParts.Length && _IpParts.Length == 4)
+            if (_IpParts.Length != _SubnetmaskParts.Length || _IpParts.Length != 4)
             {
                 throw new ArgumentException("The Addresses must be the same Size!");
             }
@@ -68,7 +68,7 @@ namespace IpAddressAnalyzer.Classes
 
         public static string GetBroadCastAddress(byte[] _IpParts, byte[] _SubnetMaskParts)
         {
-            if (_IpParts.Length != _SubnetMaskParts.Length && _IpParts.Length == 4)
+            if (_IpParts.Length != _SubnetMaskParts.Length || _IpParts.Length != 4)
             {
                 throw new ArgumentException("The Addresses must be the same Size!");
             }
@@ -79,9 +79,9 @@ namespace IpAddressAnalyzer.Classes
 
             for (int i = 0; i < invertedSubnetMaskParts.Length; i++)
             {
-                var BroadCastAddressByte = invertedSubnetMaskParts[i] | _IpParts[i];
+                var BroadCastByte = invertedSubnetMaskParts[i] | _IpParts[i];
 
-                BroadcastAddress.Append(BroadCastAddressByte.ToString() + ".");
+                BroadcastAddress.Append(BroadCastByte.ToString() + ".");
 
                 if (i == invertedSubnetMaskParts.Length - 1)
                 {
@@ -94,7 +94,7 @@ namespace IpAddressAnalyzer.Classes
 
         public static uint GetSubnettingHostAmount(byte[] _IpParts, byte[] _SubnetParts)
         {
-            if (_IpParts.Length != _SubnetParts.Length && _IpParts.Length == 4)
+            if (_IpParts.Length != _SubnetParts.Length || _IpParts.Length != 4)
             {
                 throw new ArgumentException("The Addresses must be the same Size!");
             }
