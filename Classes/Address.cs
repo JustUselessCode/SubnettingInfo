@@ -29,6 +29,11 @@ namespace IpAddressAnalyzer.Classes
             FourthOctet = fourthOctet;
         }
 
+        public Address()
+        {
+
+        }
+
         public override string ToString()
         {
             return $"Gesammt: {FirstOctet}.{SecondOctet}.{ThirdOctet}.{FourthOctet}\n1.Oktet: {FirstOctet}, 2.Oktet: {SecondOctet}, 3.Oktet: {ThirdOctet}, 4.Oktet: {FourthOctet}";

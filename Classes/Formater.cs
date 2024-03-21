@@ -6,29 +6,29 @@ namespace IpAddressAnalyzer.Classes
 {
     internal class Formater
     {
-        public static int[][] SplitAndConvert(string IpAddr, string subMask)
+        public static byte[][] SplitAndConvert(string IpAddr, string subMask)
         {
             string[] ipWorker = IpAddr.Split('.');
             string[] subnetWorker = subMask.Split('.');
 
-            int[] ipNums = new int[ipWorker.Length];
-            int[] subNums = new int[subnetWorker.Length];
+            byte[] ipNums = new byte[ipWorker.Length];
+            byte[] subNums = new byte[subnetWorker.Length];
 
             for (int i = 0; i < ipWorker.Length; i++)
             {
-                ipNums[i] = Convert.ToInt32(ipWorker[i]);
+                ipNums[i] = (byte) Convert.ToInt32(ipWorker[i]);
             }
 
             for (int i = 0; i < subnetWorker.Length; i++)
             {
-                subNums[i] = Convert.ToInt32(subnetWorker[i]);
+                subNums[i] = (byte) Convert.ToInt32(subnetWorker[i]);
             }
 
-            return new int[2][] { ipNums, subNums };
+            return new byte[2][] { ipNums, subNums };
         }
 
-        
-        public static string GetNetworkAddress(int[] ipParts, int[] subnetmaskParts)
+
+        public static string GetNetworkAddress(byte[] ipParts, byte[] subnetmaskParts)
         {
             if (ipParts.Length != subnetmaskParts.Length)
             {
@@ -43,32 +43,46 @@ namespace IpAddressAnalyzer.Classes
                 {
                     NetworkAddress.Append(ipParts[i].ToString() + ".");
                 }
+
                 else
                 {
-                    //byte IpByte = Convert.ToByte(ipParts[i]);
-                    //byte SubnetByte = Convert.ToByte(subnetmaskParts[i]);
-                    byte NetworkAddressByte = 0;
-                    string NetworkAddressByteString;
+                    var NetworkAddressByte = ipParts[i] & subnetmaskParts[i];
 
-                    for (int j = 0; j < 8; j++)
+                    NetworkAddress.Append(NetworkAddressByte.ToString() + ".");
+
+                    if (i == ipParts.Length - 1)
                     {
-                        if (Helper.IsBitSet((byte)subnetmaskParts[i], j))
-                        {
-                            NetworkAddressByte |= (byte)(1 << j);
-                        }
-
-                        else
-                        {
-                            NetworkAddressByte |= (byte)(0 << j);
-                        }
+                        NetworkAddress.Remove(NetworkAddress.Length - 1, 1);
                     }
-
-                    NetworkAddress.Append(Helper.ConvertBinToDez(NetworkAddressByte) + ".").Remove(NetworkAddress.Length - 1, 1);
                 }
-                
+
             }
 
             return NetworkAddress.ToString();
+        }
+
+        public static string GetBroadCastAddress(byte[] ipParts, byte[] subnetMaskParts)
+        {
+            if (ipParts.Length != subnetMaskParts.Length)
+            {
+                throw new ArgumentException("Die beiden Addressen müssen gleich lang sein!");
+            }
+
+            StringBuilder BroadcastAddress = new();
+
+            byte[] invertedSubnetMaskParts = Helper.InvertSubnetMask(subnetMaskParts);
+
+            for (int i = 0; i < invertedSubnetMaskParts.Length; i++)
+            {
+                BroadcastAddress.Append((invertedSubnetMaskParts[i] | ipParts[i]).ToString() + ".");
+
+                if (i == invertedSubnetMaskParts.Length)
+                {
+                    BroadcastAddress.Remove(BroadcastAddress.Length - 1, 1);
+                }
+            }
+
+            return BroadcastAddress.ToString();
         }
     }
 }
