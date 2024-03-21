@@ -20,6 +20,10 @@ namespace IpAddressAnalyzer.Classes
 
         public string NetworkAddress { get; set; }
 
+        public string BroadcastAddress { get; set; }
+
+        public uint TotalPossibleHosts { get; set; }
+
 
         public Address(byte firstOctet, byte secondOctet, byte thirdOctet, byte fourthOctet)
         {
@@ -36,7 +40,8 @@ namespace IpAddressAnalyzer.Classes
 
         public override string ToString()
         {
-            return $"Gesammt: {FirstOctet}.{SecondOctet}.{ThirdOctet}.{FourthOctet}\n1.Oktet: {FirstOctet}, 2.Oktet: {SecondOctet}, 3.Oktet: {ThirdOctet}, 4.Oktet: {FourthOctet}";
+            var indent = "   ";
+            return $"Gesammt: {FirstOctet}.{SecondOctet}.{ThirdOctet}.{FourthOctet}\n{indent}1.Oktet: {FirstOctet}\n{indent}2.Oktet: {SecondOctet}\n{indent}3.Oktet: {ThirdOctet}\n{indent}4.Oktet: {FourthOctet}\nNetwork-Address: {NetworkAddress}\nBroadcast-Address: {BroadcastAddress}\nAmount of Hosts: {TotalPossibleHosts}";
         }
     }
 }
