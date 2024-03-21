@@ -79,7 +79,9 @@ namespace IpAddressAnalyzer.Classes
 
             for (int i = 0; i < invertedSubnetMaskParts.Length; i++)
             {
-                BroadcastAddress.Append((invertedSubnetMaskParts[i] | _IpParts[i]).ToString() + ".");
+                var BroadCastByte = invertedSubnetMaskParts[i] | _IpParts[i];
+
+                BroadcastAddress.Append(BroadCastByte.ToString() + ".");
 
                 if (i == invertedSubnetMaskParts.Length - 1)
                 {
