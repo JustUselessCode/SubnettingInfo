@@ -1,0 +1,5 @@
+S:\Tim-Zander\1 - SWD\Visual Studio Projekte\Automating\obj\Debug\net7.0\IpAddressAnalyser.csproj.AssemblyReference.cache
+S:\Tim-Zander\1 - SWD\Visual Studio Projekte\Automating\obj\Debug\net7.0\IpAddressAnalyser.GeneratedMSBuildEditorConfig.editorconfig
+S:\Tim-Zander\1 - SWD\Visual Studio Projekte\Automating\obj\Debug\net7.0\IpAddressAnalyser.AssemblyInfoInputs.cache
+S:\Tim-Zander\1 - SWD\Visual Studio Projekte\Automating\obj\Debug\net7.0\IpAddressAnalyser.AssemblyInfo.cs
+S:\Tim-Zander\1 - SWD\Visual Studio Projekte\Automating\obj\Debug\net7.0\IpAddressAnalyser.csproj.CoreCompileInputs.cache
