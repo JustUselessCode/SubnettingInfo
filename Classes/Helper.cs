@@ -52,5 +52,25 @@ namespace IpAddressAnalyzer.Classes
         {
             return (b & (1 << pos)) != 0;
         }
+
+        public static byte[] InvertSubnetMask(byte[] subnetMaskParts) 
+        {
+            byte[] invertedSubnetBytes = new byte[4];
+
+            for (int i = 0; i < subnetMaskParts.Length; i++)
+            {
+                if (subnetMaskParts[i] == 255)
+                {
+                    invertedSubnetBytes[i] = (byte) 0;
+                }
+
+                else
+                {
+                    invertedSubnetBytes[i] = (byte)~(subnetMaskParts[i]);
+                }
+            }
+
+            return invertedSubnetBytes;
+        }
     }
 }
