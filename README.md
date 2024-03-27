@@ -23,13 +23,13 @@
 >
 >Prefix: /24
 >
->   1.Oktet: 192
+>   1.Octet: 192
 >
->   2.Oktet: 123
+>   2.Octet: 123
 >
->   3.Oktet: 123
+>   3.Octet: 123
 >
->   4.Oktet: 47
+>   4.Octet: 47
 >
 > Network-Address: 192.0.0.0
 >
