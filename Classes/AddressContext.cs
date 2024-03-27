@@ -37,7 +37,7 @@ namespace IpAddressAnalyzer.Classes
         public override string ToString()
         {
             var indent = "   ";
-            return $"\nGesammt: {FirstOctet}.{SecondOctet}.{ThirdOctet}.{FourthOctet}\n\nSubnet-Mask: {SubnetMask}\n\nPrefix: {SubnetPrefix}\n\n{indent}1.Oktet: {FirstOctet}\n\n{indent}2.Oktet: {SecondOctet}\n\n{indent}3.Oktet: {ThirdOctet}\n\n{indent}4.Oktet: {FourthOctet}\n\nNetwork-Address: {NetworkAddress}\n\nBroadcast-Address: {BroadcastAddress}\n\nHost-Amount: {TotalPossibleHosts.ToString("N0")}";
+            return $"Ip: {FirstOctet}.{SecondOctet}.{ThirdOctet}.{FourthOctet}\n\nSubnet-Mask: {SubnetMask}\n\nPrefix: {SubnetPrefix}\n\n{indent}1.Oktet: {FirstOctet}\n\n{indent}2.Oktet: {SecondOctet}\n\n{indent}3.Oktet: {ThirdOctet}\n\n{indent}4.Oktet: {FourthOctet}\n\nNetwork-Address: {NetworkAddress}\n\nBroadcast-Address: {BroadcastAddress}\n\nHost-Amount: {TotalPossibleHosts.ToString("N0")}";
         }
     }
 }
