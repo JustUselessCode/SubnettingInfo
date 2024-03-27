@@ -17,7 +17,7 @@
 >
 > This will display the Wanted information:
 > ```
->Gesammt: 192.123.123.47
+>Ip: 192.123.123.47
 >
 > Subnet-Mask: 255.0.0.0
 >
