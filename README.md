@@ -1,4 +1,4 @@
-# IpAddressAnalyzer
+# SubnettingInfo
 > - This is a quick and dirty CLI Tool for displaying necessary information for subnetting.
 > - This is not ready for any sort of commercial use
 
