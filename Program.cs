@@ -37,7 +37,7 @@ namespace IpAddressAnalyzer
                 Console.WriteLine("\n" + ctx.ToString());
             }
 
-            
+            // FOR TESTING AND DEMONSTARTION PURPOSES ONLY
 
             //var IpAddress = "192.168.10.183";
             //var SubnetMask = "255.255.255.240";
