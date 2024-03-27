@@ -37,3 +37,6 @@
 >
 > Host-Amount: 16.777.214
 > ```
+
+# How to unistall the tool
+> In a PowerShell Window run the command ```dotnet tool uninstall subnettinginfo --global```
