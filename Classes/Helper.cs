@@ -72,5 +72,23 @@ namespace IpAddressAnalyzer.Classes
 
             return invertedSubnetBytes;
         }
+
+        public static uint CalculateNumberOfHostBits(byte[] SubnetParts)
+        {
+            uint numberOfHostBits = 0;
+
+            foreach (byte b in SubnetParts)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    if (!IsBitSet(b, i))
+                    {
+                        numberOfHostBits++;
+                    }
+                }
+            }
+
+            return numberOfHostBits;
+        }
     }
 }

@@ -99,20 +99,19 @@ namespace IpAddressAnalyzer.Classes
                 throw new ArgumentException("The Addresses must be the same Size!");
             }
 
-            uint _TotalHostNumber = 0;
-
-            for (int i = 0; i < _IpParts.Length; i++)
+            var formula = (uint number) =>
             {
-                if (_SubnetParts[i] != 255)
-                {
-                    // Currently only works for the last Octet
-                    // TODO: Fix implementation to support SubnetMasks with a value of e.g "255.255.240.0"
-                    uint _CurrentHostNumber = (uint)(_IpParts[i] / (256 - _SubnetParts[i]) * (256 - _SubnetParts[i]));
-                    _TotalHostNumber += _CurrentHostNumber;
-                }
-            }
+                return (Math.Pow(2, number) - 2);
+            };
 
-            return _TotalHostNumber;
+            uint bits = Helper.CalculateNumberOfHostBits(_SubnetParts);
+
+            return (uint) formula(bits);
+        }
+
+        public static string GetSubnettingPrefix(byte[] subnetMask)
+        {
+            return $"/{Helper.CalculateNumberOfHostBits(subnetMask)}";
         }
     }
 }
