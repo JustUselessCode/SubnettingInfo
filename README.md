@@ -6,8 +6,8 @@
 
 > - Step 1: Clone the repository
 > - Step 2: Open Powershell and Navigate to the repo Path
-> - Step 3: Run the command ```dotnet package Automating.sln``` => This will package the solution
-> - Step 4: Run the command ```dotnet tool install --global --add-source ./nupkg IpAddressAnalyzer``` => This will install the IpAddressAnalyzer as a CLI Tool globally
+> - Step 3: Run the command ```dotnet package SubnettingInfo.sln``` => This will package the solution
+> - Step 4: Run the command ```dotnet tool install --global --add-source ./nupkg SubnettingInfo``` => This will install the IpAddressAnalyzer as a CLI Tool globally
 
 
 # How to use the Tool
