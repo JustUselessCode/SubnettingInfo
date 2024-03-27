@@ -1,5 +1,5 @@
 # SubnettingInfo
-> - This is a quick and dirty CLI Tool for displaying necessary information for subnetting.
+> - This is a quick and dirty CLI Tool for displaying necessary information for subnetting, that i developed as a little school project.
 > - This is not ready for any sort of commercial use
 
 # How to get started:
@@ -37,3 +37,6 @@
 >
 > Host-Amount: 16.777.214
 > ```
+
+# How to unistall the tool
+> In a PowerShell Window run the command ```dotnet tool uninstall subnettinginfo --global```
