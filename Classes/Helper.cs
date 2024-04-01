@@ -40,7 +40,7 @@ namespace IpAddressAnalyzer.Classes
 
         public static string ConvertBinToDez(byte b)
         {
-            return $"{b.ToString()}";
+            return $"{b}";
         }
 
         public static bool IsBitSet(byte b, int pos)

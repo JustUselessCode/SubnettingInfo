@@ -1,16 +1,12 @@
 ﻿
+using System.Runtime.InteropServices.JavaScript;
+using System.Text;
+
 namespace IpAddressAnalyzer.Classes
 {
     internal class AddressContext
     {
-        public byte FirstOctet {  get; set; }
-        
-        public byte SecondOctet { get; set; }
-        
-        public byte ThirdOctet { get; set; }
-
-        public byte FourthOctet { get; set; }
-
+        public string IpAddress { get; set; }
         public string SubnetMask { get; set; }
 
         public string NetworkAddress { get; set; }
@@ -21,23 +17,23 @@ namespace IpAddressAnalyzer.Classes
 
         public string SubnetPrefix { get; set; }
 
-        public AddressContext(byte firstOctet, byte secondOctet, byte thirdOctet, byte fourthOctet)
-        {
-            FirstOctet = firstOctet;
-            SecondOctet = secondOctet;
-            ThirdOctet = thirdOctet;
-            FourthOctet = fourthOctet;
-        }
 
-        public AddressContext()
+        public AddressContext(string ip, string subnetMask)
         {
-
+            IpAddress = ip;
+            SubnetMask = subnetMask;
         }
 
         public override string ToString()
         {
-            var indent = "   ";
-            return $"Ip: {FirstOctet}.{SecondOctet}.{ThirdOctet}.{FourthOctet}\n\nSubnet-Mask: {SubnetMask}\n\nPrefix: {SubnetPrefix}\n\n{indent}1.Octet: {FirstOctet}\n\n{indent}2.Octet: {SecondOctet}\n\n{indent}3.Octet: {ThirdOctet}\n\n{indent}4.Octet: {FourthOctet}\n\nNetwork-Address: {NetworkAddress}\n\nBroadcast-Address: {BroadcastAddress}\n\nHost-Amount: {TotalPossibleHosts.ToString("N0")}";
+            StringBuilder str = new();
+            str.Append($"Ip: {IpAddress}");
+            str.Append($"\n\nSubnet-Mask: {SubnetMask}");
+            str.Append($"\n\nPrefix: {SubnetPrefix}");
+            str.Append($"\n\nNetwork-Address: {NetworkAddress}");
+            str.Append($"\n\nBroadcast-Address: {BroadcastAddress}");
+            str.Append($"\n\nHost - Amount: {TotalPossibleHosts.ToString("N0")}");
+            return str.ToString();
         }
     }
 }
