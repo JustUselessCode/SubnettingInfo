@@ -1,5 +1,4 @@
 ﻿
-using System.Runtime.InteropServices.JavaScript;
 using System.Text;
 
 namespace IpAddressAnalyzer.Classes
