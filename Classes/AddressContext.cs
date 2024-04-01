@@ -7,6 +7,7 @@ namespace IpAddressAnalyzer.Classes
     internal class AddressContext
     {
         public string IpAddress { get; set; }
+        
         public string SubnetMask { get; set; }
 
         public string NetworkAddress { get; set; }
