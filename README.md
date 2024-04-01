@@ -2,7 +2,7 @@
 > - This is a quick and dirty CLI Tool for displaying necessary information for subnetting, that i developed as a little school project.
 > - This is not ready for any sort of commercial use
 
-# How to get started:
+# How to get started?
 
 > - Step 1: Clone the repository
 > - Step 2: Open Powershell and Navigate to the repo Path
@@ -10,10 +10,11 @@
 > - Step 4: Run the command ```dotnet tool install --global --add-source ./nupkg SubnettingInfo``` => This will install the IpAddressAnalyzer as a CLI Tool globally
 
 
-# How to use the Tool
-> In the CMD or PowerShell window run: ```SubnettingInfo <Ip> <Subnet Mask>```
+# How to use the Tool with Ipv4?
+
+> In the CMD or PowerShell window run: ```SubnettingInfo <--ipv4> <Ip> <Subnet Mask>``` => For Ipv4 Information
 > 
-> Example usage: ```SubnettingInfo 192.123.123.47 255.0.0.0```
+> Example usage: ```SubnettingInfo --ipv4 192.123.123.47 255.0.0.0```
 >
 > This will display the Wanted information:
 > ```
@@ -38,5 +39,8 @@
 > Host-Amount: 16.777.214
 > ```
 
-# How to unistall the tool
+# How to use the Tool with Ipv6?
+> As of right now, Ipv6 is not yet supported but will be added in the future.
+
+# How to unistall the Tool?
 > In a PowerShell Window run the command ```dotnet tool uninstall subnettinginfo --global```

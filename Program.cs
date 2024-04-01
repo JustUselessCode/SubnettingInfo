@@ -1,5 +1,7 @@
 ﻿
 using IpAddressAnalyzer.Classes;
+using System.CommandLine;
+using System.CommandLine.Parsing;
 
 namespace IpAddressAnalyzer
 {
@@ -7,35 +9,71 @@ namespace IpAddressAnalyzer
     {
         static void Main(string[] args)
         {
-            if (args.Length < 2)
+            var SubnettingInfoCommand = new Command("SubnettingInfo")
             {
-                try
+                Description = "A CLI Tool that provides Subnetting Information based on Ip-Address and SubnetMask"
+            };
+
+            var Ipv4Option = new Option<bool>("--ipv4")
+            {
+                IsRequired = false,
+                IsHidden = false,
+            };
+
+            var Ipv6Option = new Option<bool>("--ipv6")
+            {
+                IsRequired = false,
+                IsHidden = false,
+            };
+
+            SubnettingInfoCommand.AddOption(Ipv4Option);
+            SubnettingInfoCommand.AddOption(Ipv6Option);
+
+
+            var Parser = new Parser(SubnettingInfoCommand);
+            var argOne = args[0];
+            var Result = Parser.Parse(argOne);
+
+            if (Result.Errors.Count > 0)
+            {
+                foreach (var err in Result.Errors)
                 {
-                    throw new ArgumentException("Enter An Ip Address and a Subnet Mask in the following Command Format: \n\nSubnettingInfo <Ip> <SubnetMask>\n\nExample: SubnettingInfo 192.168.10.183 255.255.240.0");
+                    Console.WriteLine(err.ToString());
+                }
+                return;
+            }
+
+            if (Result.GetValueForOption(Ipv4Option))
+            {
+                if (args.Length != 3)
+                {
+                    Console.WriteLine("Enter An Ip Address and a Subnet Mask in the following Command Format: \n\nSubnettingInfo <--ipv4 | --ipv6> <Ip> <SubnetMask>\n\nExample: SubnettingInfo 192.168.10.183 255.255.240.0");
                 }
 
-                catch (ArgumentException ex) 
+                else
                 {
-                    Console.WriteLine(ex.Message);
+                    string mainIp = args[1];
+                    string mainSubnetMask = args[2];
+
+                    byte[][] worker = Formater.IPV4.SplitAndConvert(mainIp, mainSubnetMask);
+                    AddressContext ctx = new AddressContext(mainIp, mainSubnetMask);
+                    ctx.SubnetMask = mainSubnetMask;
+                    ctx.SubnetPrefix = Formater.IPV4.GetSubnettingPrefix(worker[1]);
+                    ctx.NetworkAddress = Formater.IPV4.GetNetworkAddress(worker[0], worker[1]);
+                    ctx.BroadcastAddress = Formater.IPV4.GetBroadCastAddress(worker[0], worker[1]);
+                    ctx.TotalPossibleHosts = Formater.IPV4.GetSubnettingHostAmount(worker[0], worker[1]);
+
+
+                    Console.WriteLine("\n" + ctx.ToString());
                 }
             }
 
-            else
+            if (Result.GetValueForOption(Ipv6Option))
             {
-                var mainIp = args[0];
-                var mainSubnetMask = args[1];
-
-                byte[][] worker = Formater.SplitAndConvert(mainIp, mainSubnetMask);
-                AddressContext ctx = new AddressContext(worker[0][0], worker[0][1], worker[0][2], worker[0][3]);
-                ctx.SubnetMask = mainSubnetMask;
-                ctx.SubnetPrefix = Formater.GetSubnettingPrefix(worker[1]);
-                ctx.NetworkAddress = Formater.GetNetworkAddress(worker[0], worker[1]);
-                ctx.BroadcastAddress = Formater.GetBroadCastAddress(worker[0], worker[1]);
-                ctx.TotalPossibleHosts = Formater.GetSubnettingHostAmount(worker[0], worker[1]);
-
-
-                Console.WriteLine("\n" + ctx.ToString());
+                Console.WriteLine("The SubnettingInfo CLI Tool is not yet equiped with Ipv6 Capabilities. Ipv6 will be added in the future!");
+                return;
             }
+
         }
     }
 }
