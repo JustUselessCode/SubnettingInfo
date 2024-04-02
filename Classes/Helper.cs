@@ -43,9 +43,9 @@ namespace IpAddressAnalyzer.Classes
             return $"{b}";
         }
 
-        public static bool IsBitSet(byte b, int pos)
+        public static bool IsBitSet(byte b, int bitPosition)
         {
-            return (b & (1 << pos)) != 0;
+            return (b & (1 << bitPosition)) != 0;
         }
 
         public static byte[] InvertSubnetMask(byte[] subnetMaskParts) 

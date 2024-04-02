@@ -63,7 +63,6 @@ namespace IpAddressAnalyzer
                     ctx.BroadcastAddress = Formater.IPV4.GetBroadCastAddress(worker[0], worker[1]);
                     ctx.TotalPossibleHosts = Formater.IPV4.GetSubnettingHostAmount(worker[0], worker[1]);
 
-
                     Console.WriteLine("\n" + ctx.ToString());
                 }
             }
