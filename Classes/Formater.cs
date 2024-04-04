@@ -75,7 +75,7 @@ namespace IpAddressAnalyzer.Classes
 
                 StringBuilder BroadcastAddress = new();
 
-                byte[] invertedSubnetMaskParts = Helper.InvertSubnetMask(_SubnetMaskParts);
+                byte[] invertedSubnetMaskParts = Helper.IPV4.InvertSubnetMask(_SubnetMaskParts);
 
                 for (int i = 0; i < invertedSubnetMaskParts.Length; i++)
                 {
@@ -104,20 +104,24 @@ namespace IpAddressAnalyzer.Classes
                     return (Math.Pow(2, number) - 2);
                 };
 
-                uint bits = Helper.CalculateNumberOfHostBits(_SubnetParts);
+                uint bits = Helper.IPV4.CalculateNumberOfHostBits(_SubnetParts);
 
                 return (uint)formula(bits);
             }
 
             public static string GetSubnettingPrefix(byte[] subnetMask)
             {
-                return $"/{Helper.CalculateNumberOfHostBits(subnetMask)}";
+                return $"/{Helper.IPV4.CalculateNumberOfHostBits(subnetMask)}";
             }
         }
         
         public static class IPV6
         {
-
+            //public static byte[] SplitAndConvert(string ipv6Address)
+            //{
+            //    byte[] hex = new byte[16];
+//
+            //}
         }
     }
 }
